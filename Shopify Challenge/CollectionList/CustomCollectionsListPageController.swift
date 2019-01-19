@@ -96,11 +96,11 @@ extension CustomCollectionsListPageController: UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        collectionView.deselectItem(at: indexPath, animated: true)
         let collectionEntity = CustomCollectionEntityController()
         collectionEntity.collectionID = collectionList?.customCollections[indexPath.row].id
         collectionEntity.imageSRC = collectionList?.customCollections[indexPath.row].image?.src
         collectionEntity.collectionTitle = collectionList?.customCollections[indexPath.row].title
+        collectionEntity.collectonBody = collectionList?.customCollections[indexPath.row].bodyHTML?.toHTML()
         show(collectionEntity, sender: self)
     }
 }

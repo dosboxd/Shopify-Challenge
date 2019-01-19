@@ -54,7 +54,8 @@ final class ProductCell: UITableViewCell {
         collectionTitle.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        collectionImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        collectionImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        collectionImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
         collectionImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         collectionImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         collectionImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true

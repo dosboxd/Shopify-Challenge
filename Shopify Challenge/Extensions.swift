@@ -15,4 +15,16 @@ extension String {
         dateFormatter.dateFormat = format
         return dateFormatter.date(from: self)
     }
+    
+    func toHTML() -> NSAttributedString {
+        let data = Data(self.utf8)
+        if !contains("<") && !contains(">") {
+            return NSAttributedString(string: self)
+        }
+        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            return attributedString
+        } else {
+            return NSAttributedString(string: self)
+        }
+    }
 }

@@ -11,6 +11,7 @@ import UIKit
 final class CustomCollectionEntityController: UIViewController {
 
     // MARK: Properties
+    var collectonBody: NSAttributedString?
     var collectionTitle: String?
     var imageSRC: String? {
         didSet {
@@ -25,6 +26,7 @@ final class CustomCollectionEntityController: UIViewController {
         }
     }
     private let entityCollectionCell = "CustomCollectionEntityCell"
+    private let headerCellID = "HeaderCellID"
     
     var collectList: CustomCollectionEntityList? {
         didSet {
@@ -46,6 +48,8 @@ final class CustomCollectionEntityController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ProductCell.self, forCellReuseIdentifier: entityCollectionCell)
+        tableView.register(ProductHeaderCell.self, forCellReuseIdentifier: headerCellID)
+        
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
@@ -82,13 +86,13 @@ final class CustomCollectionEntityController: UIViewController {
         let heightOffset = UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.frame.height ?? 44)
         
         tableView.backgroundView = acitivtyIndicator
-        tableView.contentInset = UIEdgeInsets(top: 256, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: imageHeight, left: 0, bottom: 0, right: 0)
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: heightOffset).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         
-        imageView.frame = CGRect(x: 0, y: heightOffset, width: view.frame.width, height: 256)
+        imageView.frame = CGRect(x: 0, y: heightOffset, width: view.frame.width, height: imageHeight)
     }
     
     private func loadData(by collectionID: Int) {
@@ -123,22 +127,28 @@ final class CustomCollectionEntityController: UIViewController {
         }
     }
     
+    var imageHeight: CGFloat = 256 {
+        didSet {
+            imageView.frame.size.height = imageHeight
+            tableView.contentInset.top = imageHeight
+        }
+    }
+    
     private func loadCover(by src: String?) {
         NetworkLayer.getData(from: src) { [weak self] data, error in
             DispatchQueue.main.async {
                 if let data = data {
                     let image = UIImage(data: data)
                     self?.imageView.image = image
-                    self?.imageView.frame.size.height = image?.size.height ?? 256
-                    self?.tableView.contentInset.top = image?.size.height ?? 256
+                    self?.imageHeight = image?.size.height ?? 256
                 }
             }
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let y = 256 - (scrollView.contentOffset.y + 256)
-        let height  = max(128, y)
+        let y = imageHeight - (scrollView.contentOffset.y + imageHeight)
+        let height = max(imageHeight / 2, y)
         imageView.frame.size.height = height
     }
 }
@@ -150,6 +160,11 @@ extension CustomCollectionEntityController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0, let cell = tableView.dequeueReusableCell(withIdentifier: headerCellID) as? ProductHeaderCell {
+            cell.collectionTopTitle.text = collectionTitle
+            cell.collectionTopBody.attributedText = collectonBody
+            return cell
+        }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: entityCollectionCell, for: indexPath) as? ProductCell else { return UITableViewCell() }
         cell.titleLabel.text = productList?.products[indexPath.row].title
         
@@ -168,5 +183,9 @@ extension CustomCollectionEntityController: UITableViewDelegate, UITableViewData
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
