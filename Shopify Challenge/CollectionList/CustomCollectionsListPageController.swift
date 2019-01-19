@@ -89,6 +89,7 @@ extension CustomCollectionsListPageController: UICollectionViewDelegate, UIColle
 //        collectionView.deselectItem(at: indexPath, animated: true)
         let collectionEntity = CustomCollectionEntityController()
         collectionEntity.collectionID = collectionList?.customCollections[indexPath.row].id
+        collectionEntity.imageSRC = collectionList?.customCollections[indexPath.row].image?.src
         show(collectionEntity, sender: self)
     }
 }
