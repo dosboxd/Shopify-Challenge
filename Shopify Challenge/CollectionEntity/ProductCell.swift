@@ -56,7 +56,6 @@ final class ProductCell: UITableViewCell {
         
         collectionImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         collectionImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-//        collectionImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
         collectionImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         collectionImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
         

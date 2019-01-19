@@ -11,6 +11,7 @@ import UIKit
 final class CustomCollectionEntityController: UIViewController {
 
     // MARK: Properties
+    var collectionTitle: String?
     var imageSRC: String? {
         didSet {
             loadCover(by: imageSRC)
@@ -50,6 +51,13 @@ final class CustomCollectionEntityController: UIViewController {
         return tableView
     }()
     
+    var acitivtyIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .gray
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -73,6 +81,7 @@ final class CustomCollectionEntityController: UIViewController {
         
         let heightOffset = UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.frame.height ?? 44)
         
+        tableView.backgroundView = acitivtyIndicator
         tableView.contentInset = UIEdgeInsets(top: 256, left: 0, bottom: 0, right: 0)
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: heightOffset).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
@@ -83,6 +92,7 @@ final class CustomCollectionEntityController: UIViewController {
     }
     
     private func loadData(by collectionID: Int) {
+        acitivtyIndicator.startAnimating()
         let stringWithID = String(format: URLs.customCollectionEntity, String(describing: collectionID))
         NetworkLayer.getData(from: stringWithID) { [weak self] data, error in
             if let data = data {
@@ -101,6 +111,7 @@ final class CustomCollectionEntityController: UIViewController {
         let stringIDsByComma = stringIDs.joined(separator: ",")
         let stringWithID = String(format: URLs.customCollectionProduct, stringIDsByComma)
         NetworkLayer.getData(from: stringWithID) { [weak self] data, error in
+            self?.acitivtyIndicator.stopAnimating()
             if let data = data {
                 do {
                     let decoded = try JSONDecoder().decode(Products.self, from: data)
@@ -141,8 +152,12 @@ extension CustomCollectionEntityController: UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: entityCollectionCell, for: indexPath) as? ProductCell else { return UITableViewCell() }
         cell.titleLabel.text = productList?.products[indexPath.row].title
-        cell.collectionTitle.text = productList?.products[indexPath.row].variants?.first?.price
-        cell.productTotal.text = productList?.products[indexPath.row].options?.first?.name
+        
+        if let totalQuantity = productList?.products[indexPath.row].variants?.compactMap({$0.inventoryQuantity}).reduce(0, +) {
+            cell.collectionTitle.text = "In total: " + String(describing: totalQuantity)
+        }
+        
+        cell.productTotal.text = collectionTitle
         
         NetworkLayer.getData(from: productList?.products[indexPath.row].image?.src) { data, error in
             DispatchQueue.main.async {
