@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1902C44221F36D8900D454DD /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44121F36D8900D454DD /* NetworkLayer.swift */; };
-		1902C44421F36D9F00D454DD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44321F36D9F00D454DD /* Model.swift */; };
+		1902C44421F36D9F00D454DD /* CustomCollectionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44321F36D9F00D454DD /* CustomCollectionListModel.swift */; };
 		1902C44621F3812700D454DD /* CustomCollectionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44521F3812700D454DD /* CustomCollectionListCell.swift */; };
+		1902C44B21F3821400D454DD /* CustomCollectionEntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44A21F3821400D454DD /* CustomCollectionEntityController.swift */; };
+		1902C44D21F384ED00D454DD /* CustomCollectionEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44C21F384ED00D454DD /* CustomCollectionEntityModel.swift */; };
+		1902C44F21F3931600D454DD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44E21F3931600D454DD /* Extensions.swift */; };
 		19D2584F21F35C6D00BA76C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2584E21F35C6D00BA76C8 /* AppDelegate.swift */; };
 		19D2585121F35C6D00BA76C8 /* CustomCollectionsListPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2585021F35C6D00BA76C8 /* CustomCollectionsListPageController.swift */; };
 		19D2585621F35C7000BA76C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D2585521F35C7000BA76C8 /* Assets.xcassets */; };
@@ -20,8 +23,11 @@
 /* Begin PBXFileReference section */
 		0DCB40A68BD9653242CAC7CE /* Pods-Shopify Challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify Challenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shopify Challenge/Pods-Shopify Challenge.release.xcconfig"; sourceTree = "<group>"; };
 		1902C44121F36D8900D454DD /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
-		1902C44321F36D9F00D454DD /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1902C44321F36D9F00D454DD /* CustomCollectionListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionListModel.swift; sourceTree = "<group>"; };
 		1902C44521F3812700D454DD /* CustomCollectionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionListCell.swift; sourceTree = "<group>"; };
+		1902C44A21F3821400D454DD /* CustomCollectionEntityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionEntityController.swift; sourceTree = "<group>"; };
+		1902C44C21F384ED00D454DD /* CustomCollectionEntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionEntityModel.swift; sourceTree = "<group>"; };
+		1902C44E21F3931600D454DD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		19D2584B21F35C6D00BA76C8 /* Shopify Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopify Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D2584E21F35C6D00BA76C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19D2585021F35C6D00BA76C8 /* CustomCollectionsListPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionsListPageController.swift; sourceTree = "<group>"; };
@@ -44,6 +50,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1902C44721F381DA00D454DD /* CollectionList */ = {
+			isa = PBXGroup;
+			children = (
+				1902C44521F3812700D454DD /* CustomCollectionListCell.swift */,
+				1902C44321F36D9F00D454DD /* CustomCollectionListModel.swift */,
+				19D2585021F35C6D00BA76C8 /* CustomCollectionsListPageController.swift */,
+			);
+			path = CollectionList;
+			sourceTree = "<group>";
+		};
+		1902C44921F381FC00D454DD /* CollectionEntity */ = {
+			isa = PBXGroup;
+			children = (
+				1902C44A21F3821400D454DD /* CustomCollectionEntityController.swift */,
+				1902C44C21F384ED00D454DD /* CustomCollectionEntityModel.swift */,
+			);
+			path = CollectionEntity;
+			sourceTree = "<group>";
+		};
 		19D2584221F35C6D00BA76C8 = {
 			isa = PBXGroup;
 			children = (
@@ -65,14 +90,14 @@
 		19D2584D21F35C6D00BA76C8 /* Shopify Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				1902C44921F381FC00D454DD /* CollectionEntity */,
+				1902C44721F381DA00D454DD /* CollectionList */,
 				19D2584E21F35C6D00BA76C8 /* AppDelegate.swift */,
-				19D2585021F35C6D00BA76C8 /* CustomCollectionsListPageController.swift */,
 				19D2585521F35C7000BA76C8 /* Assets.xcassets */,
 				19D2585721F35C7000BA76C8 /* LaunchScreen.storyboard */,
 				19D2585A21F35C7000BA76C8 /* Info.plist */,
 				1902C44121F36D8900D454DD /* NetworkLayer.swift */,
-				1902C44321F36D9F00D454DD /* Model.swift */,
-				1902C44521F3812700D454DD /* CustomCollectionListCell.swift */,
+				1902C44E21F3931600D454DD /* Extensions.swift */,
 			);
 			path = "Shopify Challenge";
 			sourceTree = "<group>";
@@ -189,8 +214,11 @@
 				1902C44221F36D8900D454DD /* NetworkLayer.swift in Sources */,
 				19D2585121F35C6D00BA76C8 /* CustomCollectionsListPageController.swift in Sources */,
 				1902C44621F3812700D454DD /* CustomCollectionListCell.swift in Sources */,
+				1902C44F21F3931600D454DD /* Extensions.swift in Sources */,
+				1902C44B21F3821400D454DD /* CustomCollectionEntityController.swift in Sources */,
+				1902C44D21F384ED00D454DD /* CustomCollectionEntityModel.swift in Sources */,
 				19D2584F21F35C6D00BA76C8 /* AppDelegate.swift in Sources */,
-				1902C44421F36D9F00D454DD /* Model.swift in Sources */,
+				1902C44421F36D9F00D454DD /* CustomCollectionListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

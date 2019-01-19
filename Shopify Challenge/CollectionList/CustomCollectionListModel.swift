@@ -26,7 +26,7 @@ struct CustomCollection: Codable {
     let templateSuffix: String?
     let publishedScope: PublishedScope?
     let adminGraphqlAPIID: String?
-    let image: Image?
+    let image: CollectionListImage?
     
     enum CodingKeys: String, CodingKey {
         case id, handle, title
@@ -50,26 +50,13 @@ struct CustomCollection: Codable {
         templateSuffix = try values.decodeIfPresent(String.self, forKey: .templateSuffix)
         publishedScope = try values.decodeIfPresent(PublishedScope.self, forKey: .publishedScope)
         adminGraphqlAPIID = try values.decodeIfPresent(String.self, forKey: .adminGraphqlAPIID)
-        image = try values.decodeIfPresent(Image.self, forKey: .image)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        
-        if let publishedAtString = try values.decodeIfPresent(String.self, forKey: .publishedAt) {
-            publishedAt = dateFormatter.date(from: publishedAtString)
-        } else {
-            publishedAt = nil
-        }
-        
-        if let updatedAtString = try values.decodeIfPresent(String.self, forKey: .updatedAt) {
-            updatedAt = dateFormatter.date(from: updatedAtString)
-        } else {
-            updatedAt = nil
-        }
+        image = try values.decodeIfPresent(CollectionListImage.self, forKey: .image)
+        publishedAt = try values.decodeIfPresent(String.self, forKey: .publishedAt)?.toDate(format: "yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+        updatedAt = try values.decodeIfPresent(String.self, forKey: .updatedAt)?.toDate(format: "yyyy-MM-dd'T'HH:mm:ssZZZZZ")
     }
 }
 
-struct Image: Codable {
+struct CollectionListImage: Codable {
     let createdAt: Date?
     let alt: String?
     let width, height: Int?
@@ -87,15 +74,7 @@ struct Image: Codable {
         width = try values.decodeIfPresent(Int.self, forKey: .width)
         height = try values.decodeIfPresent(Int.self, forKey: .height)
         src = try values.decodeIfPresent(String.self, forKey: .src)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        
-        if let createdAtString = try values.decodeIfPresent(String.self, forKey: .createdAt) {
-            createdAt = dateFormatter.date(from: createdAtString)
-        } else {
-            createdAt = nil
-        }
+        createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt)?.toDate(format: "yyyy-MM-dd'T'HH:mm:ssZZZZZ")
     }
 }
 

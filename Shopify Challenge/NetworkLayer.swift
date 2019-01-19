@@ -8,8 +8,10 @@
 
 import Alamofire
 
-extension URL {
-    static let customCollectionList = URL(string: "https://shopicruit.myshopify.com/admin/custom_collections.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6")
+class URLs {
+    static let customCollectionList = "https://shopicruit.myshopify.com/admin/custom_collections.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
+    static let customCollectionEntity = "https://shopicruit.myshopify.com/admin/collects.json?collection_id=%@&page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
+    static let customCollectionProduct = "https://shopicruit.myshopify.com/admin/products.json?ids=%@&page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6"
 }
 
 class NetworkLayer {

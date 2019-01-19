@@ -50,7 +50,7 @@ final class CustomCollectionsListPageController: UIViewController {
     }
     
     private func loadData() {
-        NetworkLayer.getData(from: URL.customCollectionList?.absoluteString) { [weak self] data, error in
+        NetworkLayer.getData(from: URLs.customCollectionList) { [weak self] data, error in
             if let data = data {
                 do {
                     let decoded = try JSONDecoder().decode(CustomCollectionList.self, from: data)
@@ -81,5 +81,12 @@ extension CustomCollectionsListPageController: UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.frame.width / 2 - 32
         return CGSize(width: size, height: size)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let collectionEntity = CustomCollectionEntityController()
+        collectionEntity.collectionID = collectionList?.customCollections[indexPath.row].id
+        show(collectionEntity, sender: self)
     }
 }
