@@ -42,6 +42,7 @@ final class CustomCollectionsListPageController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Custom Collections"
         setupViews()
         loadData()
     }

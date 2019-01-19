@@ -72,6 +72,7 @@ final class CustomCollectionEntityController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Collection Details"
         setupViews()
     }
     
