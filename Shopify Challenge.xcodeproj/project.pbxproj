@@ -11,15 +11,19 @@
 		19D2585121F35C6D00BA76C8 /* CustomCollectionsListPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2585021F35C6D00BA76C8 /* CustomCollectionsListPageController.swift */; };
 		19D2585621F35C7000BA76C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D2585521F35C7000BA76C8 /* Assets.xcassets */; };
 		19D2585921F35C7000BA76C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D2585721F35C7000BA76C8 /* LaunchScreen.storyboard */; };
+		D92376487C11C697193B1F05 /* libPods-Shopify Challenge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F488825A7C80CF58C1DA5E /* libPods-Shopify Challenge.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DCB40A68BD9653242CAC7CE /* Pods-Shopify Challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify Challenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shopify Challenge/Pods-Shopify Challenge.release.xcconfig"; sourceTree = "<group>"; };
 		19D2584B21F35C6D00BA76C8 /* Shopify Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopify Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D2584E21F35C6D00BA76C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19D2585021F35C6D00BA76C8 /* CustomCollectionsListPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionsListPageController.swift; sourceTree = "<group>"; };
 		19D2585521F35C7000BA76C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19D2585821F35C7000BA76C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19D2585A21F35C7000BA76C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19F488825A7C80CF58C1DA5E /* libPods-Shopify Challenge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Shopify Challenge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AAE904C56399F35606A6E2D /* Pods-Shopify Challenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify Challenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shopify Challenge/Pods-Shopify Challenge.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D92376487C11C697193B1F05 /* libPods-Shopify Challenge.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +43,8 @@
 			children = (
 				19D2584D21F35C6D00BA76C8 /* Shopify Challenge */,
 				19D2584C21F35C6D00BA76C8 /* Products */,
+				F3C6B20F408E09010F1F730A /* Pods */,
+				885D6D3A150716847AFE5D8A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +68,23 @@
 			path = "Shopify Challenge";
 			sourceTree = "<group>";
 		};
+		885D6D3A150716847AFE5D8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				19F488825A7C80CF58C1DA5E /* libPods-Shopify Challenge.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3C6B20F408E09010F1F730A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5AAE904C56399F35606A6E2D /* Pods-Shopify Challenge.debug.xcconfig */,
+				0DCB40A68BD9653242CAC7CE /* Pods-Shopify Challenge.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -68,6 +92,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19D2585D21F35C7000BA76C8 /* Build configuration list for PBXNativeTarget "Shopify Challenge" */;
 			buildPhases = (
+				49734D91746BFCF86A1E2F6D /* [CP] Check Pods Manifest.lock */,
 				19D2584721F35C6D00BA76C8 /* Sources */,
 				19D2584821F35C6D00BA76C8 /* Frameworks */,
 				19D2584921F35C6D00BA76C8 /* Resources */,
@@ -125,6 +150,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49734D91746BFCF86A1E2F6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shopify Challenge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		19D2584721F35C6D00BA76C8 /* Sources */ = {
@@ -268,6 +314,7 @@
 		};
 		19D2585E21F35C7000BA76C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AAE904C56399F35606A6E2D /* Pods-Shopify Challenge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -286,6 +333,7 @@
 		};
 		19D2585F21F35C7000BA76C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DCB40A68BD9653242CAC7CE /* Pods-Shopify Challenge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
