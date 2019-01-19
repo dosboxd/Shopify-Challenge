@@ -8,14 +8,22 @@
 
 import UIKit
 
-class CustomCollectionsListPageController: UIViewController {
+final class CustomCollectionsListPageController: UIViewController {
+    
+    // MARK: Properties
+    var collectionList: CustomCollectionList? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     // MARK: View Elements
-    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        layout.minimumLineSpacing = 32
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionListCellID")
+        collectionView.register(CustomCollectionListCell.self, forCellWithReuseIdentifier: "CollectionListCellID")
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -23,7 +31,6 @@ class CustomCollectionsListPageController: UIViewController {
     }()
     
     // MARK: Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -31,24 +38,23 @@ class CustomCollectionsListPageController: UIViewController {
     }
     
     // MARK: Custom Methods
-    
     private func setupViews() {
-        view.backgroundColor = UIColor(red: 0.13, green: 0.17, blue: 0.21, alpha: 1.0)
+        view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 16).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
     }
     
     private func loadData() {
-        NetworkLayer.getCustomCollectionList { [weak self] data, error in
+        NetworkLayer.getData(from: URL.customCollectionList?.absoluteString) { [weak self] data, error in
             if let data = data {
                 do {
                     let decoded = try JSONDecoder().decode(CustomCollectionList.self, from: data)
-                    print(decoded)
+                    self?.collectionList = decoded
                 } catch {
                     print(error)
                 }
@@ -58,25 +64,22 @@ class CustomCollectionsListPageController: UIViewController {
 }
 
 // MARK: CollectionView Delegates and Data Source
-
 extension CustomCollectionsListPageController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionListCellID", for: indexPath)
-        cell.backgroundColor = UIColor(red: 0.57, green: 0.62, blue: 0.67, alpha: 1.0)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionListCellID", for: indexPath) as? CustomCollectionListCell else { return UICollectionViewCell() }
+        cell.imageView.image = nil
+        cell.imageSrc = collectionList?.customCollections[indexPath.row].image?.src
+        cell.titleLabel.text = collectionList?.customCollections[indexPath.row].title
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 32
+        return collectionList?.customCollections.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionView.frame.width / 3 - 16
+        let size = collectionView.frame.width / 2 - 32
         return CGSize(width: size, height: size)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 32
     }
 }
