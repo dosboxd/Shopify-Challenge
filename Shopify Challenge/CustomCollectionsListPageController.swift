@@ -27,6 +27,7 @@ class CustomCollectionsListPageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        loadData()
     }
     
     // MARK: Custom Methods
@@ -40,6 +41,19 @@ class CustomCollectionsListPageController: UIViewController {
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+    }
+    
+    private func loadData() {
+        NetworkLayer.getCustomCollectionList { [weak self] data, error in
+            if let data = data {
+                do {
+                    let decoded = try JSONDecoder().decode(CustomCollectionList.self, from: data)
+                    print(decoded)
+                } catch {
+                    print(error)
+                }
+            }
+        }
     }
 }
 
