@@ -39,7 +39,7 @@ final class CustomCollectionEntityController: UIViewController {
     // MARK: View Elements
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableCellID)
+        tableView.register(ProductCell.self, forCellReuseIdentifier: tableCellID)
 //        tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
@@ -102,9 +102,19 @@ extension CustomCollectionEntityController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableCellID, for: indexPath)
-//        cell.textLabel?.text = String(describing: collectList?.collects[indexPath.row].productID ?? 0)
-        cell.textLabel?.text = productList?.products[indexPath.row].title
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: tableCellID, for: indexPath) as? ProductCell else { return UITableViewCell() }
+        cell.titleLabel.text = productList?.products[indexPath.row].title
+        cell.collectionTitle.text = productList?.products[indexPath.row].variants?.first?.price
+        cell.productTotal.text = productList?.products[indexPath.row].options?.first?.name
+        
+        NetworkLayer.getData(from: productList?.products[indexPath.row].image?.src) { data, error in
+            DispatchQueue.main.async {
+                if let data = data {
+                    cell.collectionImageView.image = UIImage(data: data)
+                }
+            }
+        }
+        
         return cell
     }
 }

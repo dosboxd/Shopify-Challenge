@@ -13,6 +13,7 @@
 		1902C44B21F3821400D454DD /* CustomCollectionEntityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44A21F3821400D454DD /* CustomCollectionEntityController.swift */; };
 		1902C44D21F384ED00D454DD /* CustomCollectionEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44C21F384ED00D454DD /* CustomCollectionEntityModel.swift */; };
 		1902C44F21F3931600D454DD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C44E21F3931600D454DD /* Extensions.swift */; };
+		1902C45121F395F300D454DD /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C45021F395F300D454DD /* ProductCell.swift */; };
 		19D2584F21F35C6D00BA76C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2584E21F35C6D00BA76C8 /* AppDelegate.swift */; };
 		19D2585121F35C6D00BA76C8 /* CustomCollectionsListPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D2585021F35C6D00BA76C8 /* CustomCollectionsListPageController.swift */; };
 		19D2585621F35C7000BA76C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D2585521F35C7000BA76C8 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		1902C44A21F3821400D454DD /* CustomCollectionEntityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionEntityController.swift; sourceTree = "<group>"; };
 		1902C44C21F384ED00D454DD /* CustomCollectionEntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionEntityModel.swift; sourceTree = "<group>"; };
 		1902C44E21F3931600D454DD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1902C45021F395F300D454DD /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		19D2584B21F35C6D00BA76C8 /* Shopify Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopify Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D2584E21F35C6D00BA76C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19D2585021F35C6D00BA76C8 /* CustomCollectionsListPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionsListPageController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			children = (
 				1902C44A21F3821400D454DD /* CustomCollectionEntityController.swift */,
 				1902C44C21F384ED00D454DD /* CustomCollectionEntityModel.swift */,
+				1902C45021F395F300D454DD /* ProductCell.swift */,
 			);
 			path = CollectionEntity;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				1902C44F21F3931600D454DD /* Extensions.swift in Sources */,
 				1902C44B21F3821400D454DD /* CustomCollectionEntityController.swift in Sources */,
 				1902C44D21F384ED00D454DD /* CustomCollectionEntityModel.swift in Sources */,
+				1902C45121F395F300D454DD /* ProductCell.swift in Sources */,
 				19D2584F21F35C6D00BA76C8 /* AppDelegate.swift in Sources */,
 				1902C44421F36D9F00D454DD /* CustomCollectionListModel.swift in Sources */,
 			);

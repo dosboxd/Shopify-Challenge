@@ -11,6 +11,8 @@ import UIKit
 final class CustomCollectionsListPageController: UIViewController {
     
     // MARK: Properties
+    private let customCollectionListCellID = "CustomCollectionListCell"
+
     var collectionList: CustomCollectionList? {
         didSet {
             collectionView.reloadData()
@@ -23,7 +25,7 @@ final class CustomCollectionsListPageController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         layout.minimumLineSpacing = 32
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(CustomCollectionListCell.self, forCellWithReuseIdentifier: "CollectionListCellID")
+        collectionView.register(CustomCollectionListCell.self, forCellWithReuseIdentifier: customCollectionListCellID)
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -67,7 +69,7 @@ final class CustomCollectionsListPageController: UIViewController {
 extension CustomCollectionsListPageController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionListCellID", for: indexPath) as? CustomCollectionListCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: customCollectionListCellID, for: indexPath) as? CustomCollectionListCell else { return UICollectionViewCell() }
         cell.imageView.image = nil
         cell.imageSrc = collectionList?.customCollections[indexPath.row].image?.src
         cell.titleLabel.text = collectionList?.customCollections[indexPath.row].title
@@ -84,7 +86,7 @@ extension CustomCollectionsListPageController: UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+//        collectionView.deselectItem(at: indexPath, animated: true)
         let collectionEntity = CustomCollectionEntityController()
         collectionEntity.collectionID = collectionList?.customCollections[indexPath.row].id
         show(collectionEntity, sender: self)
